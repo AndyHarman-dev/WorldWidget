@@ -22,7 +22,6 @@ public class WorldWidget : ModuleRules
                 "SlateCore",
                 "UMG",
                 "UELoggingModule",
-                "ResultErrorHandlingType", "BaseWidgets"
             }
         );
     }

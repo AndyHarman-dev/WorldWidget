@@ -35,7 +35,6 @@ public:
 		return GetComponentLocation();
 	}
 
-	virtual void BeginPlay() override;
 protected:	
 	virtual void OnVisibilityChanged() override;
 
@@ -43,10 +42,8 @@ protected:
 	FVector2D Pivot = FVector2D{ 0.5f, 0.5f };
 	
 	UPROPERTY(EditAnywhere, Category = "WorldWidget")
-	TSubclassOf<UBaseUserWidget> WidgetClass;
+	TSubclassOf<UUserWidget> WidgetClass;
 	UPROPERTY(BlueprintReadOnly, Category = "WorldWidget")
-	TObjectPtr<UBaseUserWidget> Widget;
+	TObjectPtr<UUserWidget> Widget;
 	virtual void PostInitProperties() override;
-	UFUNCTION(BlueprintImplementableEvent, Category = "WorldWidget")
-	void OnWidgetConstructed(UBaseUserWidget* ThisWidget);
 };

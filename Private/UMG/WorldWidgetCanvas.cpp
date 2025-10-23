@@ -77,7 +77,7 @@ void UWorldWidgetCanvas::Remove(const TScriptInterface<IWorldWidgetProvider>& Pr
 		return;
 	}
 
-	Entries.RemoveAll([Provider](const FEntry& OneOfEntries)
+	Entries.RemoveAll([Provider](const FProviderEntry& OneOfEntries)
 	{
 		return Provider == OneOfEntries.Provider;
 	});
@@ -95,7 +95,7 @@ bool UWorldWidgetCanvas::Contains(const TScriptInterface<IWorldWidgetProvider>& 
 		return false;
 	}
 
-	return Entries.ContainsByPredicate([Provider](const FEntry& OneOfEntries)
+	return Entries.ContainsByPredicate([Provider](const FProviderEntry& OneOfEntries)
 	{
 		return Provider == OneOfEntries.Provider;
 	});
@@ -108,9 +108,9 @@ void UWorldWidgetCanvas::NativeOnInitialized()
 	Projector->Initialize(GetOwningPlayer());
 }
 
-FEntry UWorldWidgetCanvas::MakeNewEntry(const TScriptInterface<IWorldWidgetProvider>& Provider)
+FProviderEntry UWorldWidgetCanvas::MakeNewEntry(const TScriptInterface<IWorldWidgetProvider>& Provider)
 {
-	FEntry NewEntry = FEntry();
+	FProviderEntry NewEntry = FProviderEntry();
 	NewEntry.Provider = Provider;
 
 	const auto Widget = IWorldWidgetProvider::Execute_GetWidget(Provider.GetObject());
@@ -119,6 +119,7 @@ FEntry UWorldWidgetCanvas::MakeNewEntry(const TScriptInterface<IWorldWidgetProvi
 	
 	NewEntry.ContainerWidget = MakeContainerWidget();
 	NewEntry.ContainerWidget->AddChild(Widget);
+	IWorldWidgetProvider::Execute_NotifyWidgetConstructed(Provider.GetObject());
 
 	NewEntry.Slot = Canvas->AddChildToCanvas(NewEntry.ContainerWidget);
 	ApplyCanvasParametersTo(NewEntry.Slot);
@@ -220,7 +221,7 @@ float UWorldWidgetCanvas::CalculateDistanceBetweenPlayerAnd(FVector WorldLocatio
 	return FVector::DistSquared(WorldLocation, LPawn->GetActorLocation());
 }
 
-void UWorldWidgetCanvas::SetCanvasSlotPositionAndParameters(const FEntry& Entry)
+void UWorldWidgetCanvas::SetCanvasSlotPositionAndParameters(const FProviderEntry& Entry)
 {
 	if (!IsValid(Entry.Slot))
 	{

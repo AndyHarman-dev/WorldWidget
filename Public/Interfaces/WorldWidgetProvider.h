@@ -31,4 +31,7 @@ public:
 	FVector2D GetPivot();
 	UFUNCTION(BlueprintNativeEvent, Category="WorldWidgetProvider")
 	bool IsVisible();
+
+	UFUNCTION(BlueprintNativeEvent, Category="WorldWidgetProvider")
+	void NotifyWidgetConstructed();
 };

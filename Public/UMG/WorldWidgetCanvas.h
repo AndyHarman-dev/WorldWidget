@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "ResultType/Result.h"
 #include "WorldWidgetCanvas.generated.h"
 
 class UWorldToScreenLocationProjector;
@@ -62,7 +61,7 @@ struct FCanvasSlotParameters
 };
 
 USTRUCT()
-struct FEntry
+struct FProviderEntry
 {
 	GENERATED_BODY()
 	bool bRemoving = false;
@@ -106,9 +105,7 @@ public:
 	virtual void NativeOnInitialized() override;
 private:
 	UPROPERTY()
-	TArray<FEntry> Entries;
-	UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess), Category="WorldWidget")
-	TSubclassOf<UWidget> EntryWidgetClass;
+	TArray<FProviderEntry> Entries;
 	
 	UPROPERTY(EditDefaultsOnly, meta=(AllowPrivateAccess), Category="WorldWidget|Slot")
 	FCanvasSlotParameters Parameters;
@@ -125,7 +122,7 @@ private:
 	UPROPERTY(Transient)
 	UWorldToScreenLocationProjector* Projector;
 	
-	FEntry MakeNewEntry(const TScriptInterface<IWorldWidgetProvider>& Provider);
+	FProviderEntry MakeNewEntry(const TScriptInterface<IWorldWidgetProvider>& Provider);
 	UBorder* MakeContainerWidget();
 	FAutoDestroyWidgetPtr ToRefCountPtr(UWidget* Widget);
 	void ApplyCanvasParametersTo(UCanvasPanelSlot* Slot);
@@ -133,7 +130,7 @@ private:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 	void PositionEntries();
 	float CalculateDistanceBetweenPlayerAnd(FVector WorldLocation);
-	void SetCanvasSlotPositionAndParameters(const FEntry& Entry);
+	void SetCanvasSlotPositionAndParameters(const FProviderEntry& Entry);
 	void OrderWidgetsByProximityToCamera();
 	void ProcessSlateIsOnFastUpdatePath();
 };
