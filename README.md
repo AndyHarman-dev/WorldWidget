@@ -36,13 +36,14 @@ This guide walks you through setting up world-space widgets that display markers
 
 You should already have actors in your scene that need markers displayed above them.
 
-![[Actors.png]]
+<img width="1087" height="644" alt="Actors" src="https://github.com/user-attachments/assets/e57ee066-fe75-4e75-8a6a-a8c2495a89d2" />
+
 
 ## Step 1: Create the Scene Component
 
 Create a new scene component that will serve as the marker provider.
 
-![[SceneComponent.png]]
+<img width="1109" height="457" alt="SceneComponent" src="https://github.com/user-attachments/assets/8767c36a-5b0e-429c-b7d3-ade8580140a9" />
 
 ## Step 2: Implement the Interface
 
@@ -56,31 +57,31 @@ Implement the `IWorldWidgetProvider` interface in your component class and overr
 
 Create the widget that will be displayed as the marker.
 
-![[WidgetCreation.png]]
+<img width="780" height="308" alt="WidgetCreation" src="https://github.com/user-attachments/assets/b4295b67-5e3f-4ac0-bdef-b9477519787c" />
 
 ## Synchronizing Widget Data
 
 Use the `NotifyWidgetConstruction` event to initialize your widget when it's added to the screen. This ensures your widget stays in sync with the component's data.
 
-![[NotifyWidget.png]]
+<img width="1007" height="350" alt="NotifyWidget" src="https://github.com/user-attachments/assets/53159539-48a5-4721-85a9-116d9deb1028" />
 
 ## Step 4: Create the Canvas Widget
 
 Create a new widget blueprint that will serve as the canvas for all markers.
 
-![[SelectTheClass.png]]  
-![[NameYourWidget.png]]
+<img width="631" height="334" alt="SelectTheClass" src="https://github.com/user-attachments/assets/988398ee-c485-4610-b0b9-ff90066aa95d" />
+<img width="1031" height="444" alt="NameYourWidget" src="https://github.com/user-attachments/assets/da917cb1-5649-47e6-b7d3-618d75690013" />
 
 Ensure the widget hierarchy contains a `CanvasPanel` as the root or primary container.
 
-![[CanvasPanelIsThere.png]]
+<img width="1202" height="755" alt="CanvasPanelIsThere" src="https://github.com/user-attachments/assets/0ae11440-5a66-418b-afed-7bfada62c518" />
 
 ## Step 5: Configure Your Actors
 
 Add the component to your actors and configure their marker settings.
 
-![[AddComponent.png]]  
-![[SetupNames.png]]
+<img width="1673" height="592" alt="AddComponent" src="https://github.com/user-attachments/assets/9a341717-ae96-430c-acb3-e4eb5e7751ae" />
+<img width="1490" height="625" alt="SetupNames" src="https://github.com/user-attachments/assets/056314af-1c41-4d16-90ec-49be812df8f5" />
 
 ## Step 6: Initialize the System
 
@@ -88,17 +89,18 @@ Create the canvas widget and gather all provider components to display the marke
 
 ## Create and Add the Canvas Widget
 
-![[CreateAndAddWidget.png]]
+<img width="958" height="316" alt="CreateAndAddWidget" src="https://github.com/user-attachments/assets/098bfbb5-dceb-41ad-a75e-5c09b699f34e" />
 
 ## Gather Components and Initialize
 
-![[GetAllComponentsAndInitalizeWidget.png]]
+<img width="1261" height="331" alt="GetAllComponentsAndInitalizeWidget" src="https://github.com/user-attachments/assets/e6e0e665-a950-40a6-94a7-4b0bd9e305d6" />
 
 ## Result
 
 Your world widgets should now be displaying correctly above your actors.
 
-![[voilà.png]]
+<img width="1278" height="711" alt="voilà" src="https://github.com/user-attachments/assets/063e3d14-d04a-4746-a0ff-cdc11594e718" />
+
 ## API Documentation
 
 ### Core Classes
