@@ -28,28 +28,77 @@ WorldWidget is a modular Unreal Engine component library for rendering interacti
 2. Include appropriate header files in your game modules.
 3. Regenerate project files and compile in Unreal Editor.
 
-## Usage
+# Setup Guide
 
-### Example: Add a WorldWidget to an Actor
+This guide walks you through setting up world-space widgets that display markers above actors in your scene.
 
-```cpp
-// In your actor header
-#include "WorldWidgetComponent.h"
+## Prerequisites
 
-// In constructor
-UWorldWidgetComponent* WidgetComp = CreateDefaultSubobject<UWorldWidgetComponent>(TEXT("WorldWidget"));
-WidgetComp->WidgetClass = MyCustomUserWidgetClass; // Your UUserWidget Blueprint/Class
-WidgetComp->Pivot = FVector2D(0.5f, 0.5f); // Center pivot
-```
+You should already have actors in your scene that need markers displayed above them.
 
-### Interactive Widget Projection
+![[Actors.png]]
 
-```cpp
-// Redraw widgets for provider actors
-TArray<TScriptInterface<IWorldWidgetProvider>> WidgetProviders = ...;
-WorldWidgetCanvas->RedrawWith(WidgetProviders);
-```
+## Step 1: Create the Scene Component
 
+Create a new scene component that will serve as the marker provider.
+
+![[SceneComponent.png]]
+
+## Step 2: Implement the Interface
+
+Implement the `IWorldWidgetProvider` interface in your component class and override the required methods:
+
+- `GetWorldLocation` - Returns the world position where the widget should be displayed
+    
+- `GetWidget` - Returns the widget instance to display
+
+## Step 3: Create Your Custom Widget in The Component
+
+Create the widget that will be displayed as the marker.
+
+![[WidgetCreation.png]]
+
+## Synchronizing Widget Data
+
+Use the `NotifyWidgetConstruction` event to initialize your widget when it's added to the screen. This ensures your widget stays in sync with the component's data.
+
+![[NotifyWidget.png]]
+
+## Step 4: Create the Canvas Widget
+
+Create a new widget blueprint that will serve as the canvas for all markers.
+
+![[SelectTheClass.png]]  
+![[NameYourWidget.png]]
+
+Ensure the widget hierarchy contains a `CanvasPanel` as the root or primary container.
+
+![[CanvasPanelIsThere.png]]
+
+## Step 5: Configure Your Actors
+
+Add the component to your actors and configure their marker settings.
+
+![[AddComponent.png]]  
+![[SetupNames.png]]
+
+## Step 6: Initialize the System
+
+Create the canvas widget and gather all provider components to display the markers. This example shows setup in the player controller, but you can implement this in any suitable class.
+
+## Create and Add the Canvas Widget
+
+![[CreateAndAddWidget.png]]
+
+## Gather Components and Initialize
+
+![[GetAllComponentsAndInitalizeWidget.png]]
+
+## Result
+
+Your world widgets should now be displaying correctly above your actors.
+
+![[voilà.png]]
 ## API Documentation
 
 ### Core Classes
