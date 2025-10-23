@@ -15,19 +15,6 @@ WorldWidget is a modular Unreal Engine component library for rendering interacti
 - Extensible projection system via `WorldToScreenLocationProjector`
 - Event-driven visibility and widget construction
 
-## Tech Stack
-
-- **Language:** C++
-- **Framework:** Unreal Engine (Blueprint & C++ API)
-- **Modules:** UMG (Unreal Motion Graphics), Slate, CoreMinimal
-
-Dependencies (from includes):
-
-- UMG Widgets: `BlueprintUserWidget`, `CanvasPanel`, `Border`
-- Slate UI: `SlateSGameLayerManager`, `EasyLog`
-- Core Unreal: `CoreMinimal.h`, `SceneComponent.h`
-- Project-specific: `WorldWidgetCanvas.h`, `WorldWidgetProvider.h`,`WorldToScreenLocationProjector.h`
-
 ## Installation
 
 **Prerequisites:**
